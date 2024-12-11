@@ -1,8 +1,8 @@
-
 int sensorPin = A0;
 int lightG = 8;
 int lightR = 7;
 int lightW = 4;
+int relayPin = 12;
 
 
 void setup() {
@@ -13,6 +13,7 @@ void setup() {
   pinMode(lightR, OUTPUT);
   pinMode(lightW, OUTPUT);
   pinMode(sensorPin, INPUT); // declare A0 as an input to read data
+  pinMode(relayPin, OUTPUT);
 
 }
 
@@ -30,12 +31,14 @@ void loop() {
     delay(100);
     digitalWrite(lightR, LOW);
     delay(100);
+    digitalWrite(relayPin, HIGH);
   } else if (data >= 500 && data <= 700) {
     Serial.println("Some moisture, Soil is medium moist");
     digitalWrite(lightW, HIGH);
     delay(50);
     digitalWrite(lightW, LOW);
     delay(50);
+    digitalWrite(relayPin, LOW);
   } else if (data <= 400) {
     Serial.println("Soil is wet");
     digitalWrite(lightG, HIGH);
